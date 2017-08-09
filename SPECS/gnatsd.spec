@@ -12,6 +12,9 @@ Source2:    gnatsd.conf
 
 
 BuildRequires:	zip
+Requires(pre):		/sbin/useradd, /bin/getent
+Requires(postun):	/sbin/userdel
+
 
 %description
 
@@ -34,6 +37,22 @@ install -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/
 
 mkdir -p %{buildroot}%{_sysconfdir}
 install -D -m 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/
+
+
+%pre
+/bin/getent group gnatsd > /dev/null || /sbin/groupadd -r gnatsd
+/bin/getent passwd gnatsd > /dev/null || /sbin/useradd -r -d / -s /sbin/nologin -g gnatsd gnatsd
+
+
+%postun
+case "$1" in
+   0) # remove
+      /sbin/userdel gnatsd
+   ;;
+   1) # upgrade - don't do anything
+   ;;
+esac
+ 
 
 
 %files
