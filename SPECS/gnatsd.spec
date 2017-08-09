@@ -52,7 +52,6 @@ case "$1" in
    1) # upgrade - don't do anything
    ;;
 esac
- 
 
 
 %files
