@@ -1,3 +1,6 @@
+%define debug_package %{nil}
+
+
 Name:		gnatsd
 Version:	1.0.2
 Release:	1%{?dist}
@@ -6,36 +9,41 @@ Summary:	A High Performance NATS Server written in Go.
 Group:		Messaging Server Support
 License:	MIT
 URL:		https://github.com/nats-io/gnatsd
-Source0:	https://github.com/nats-io/gnatsd/releases/download/v1.0.2/gnatsd-v1.0.2-linux-amd64.zip
+Source0:	https://github.com/nats-io/gnatsd/archive/v1.0.2.tar.gz
 Source1:	gnatsd.service
 Source2:    gnatsd.conf
 
 
-BuildRequires:	zip
+BuildRequires:	golang
+
 Requires(pre):		/sbin/useradd, /bin/getent
 Requires(postun):	/sbin/userdel
 
 
 %description
-
+NATS Server is a simple, high performance open source messaging system for
+cloud native applications, IoT messaging, and microservices architectures.
 
 %prep
-unzip %{SOURCE0} > /dev/null
-%setup -D -T -n gnatsd-v1.0.2-linux-amd64
-
+%setup -q -n gnatsd-%{version}
 
 %build
+mkdir -p ./_build/src/github.com/nats-io
+ln -s $(pwd) ./_build/src/github.com/nats-io/gnatsd
+
+export GOPATH=$(pwd)/_build:%{gopath}
+go build -o gnatsd .
+
 
 %install
-rm -rf %{buildroot}
 
-mkdir -p %{buildroot}%{_sbindir}
-install -D -m 0755 gnatsd %{buildroot}%{_sbindir}/gnatsd
+install -d %{buildroot}%{_sbindir}
+install -p -m 0755 ./gnatsd %{buildroot}%{_sbindir}/gnatsd
 
-mkdir -p %{buildroot}%{_unitdir}
+install -d %{buildroot}%{_unitdir}
 install -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/
 
-mkdir -p %{buildroot}%{_sysconfdir}
+install -d %{buildroot}%{_sysconfdir}
 install -D -m 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/
 
 
