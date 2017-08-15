@@ -4,9 +4,8 @@
 Name:		gnatsd
 Version:	1.0.2
 Release:	1%{?dist}
-Summary:	A High Performance NATS Server written in Go.
+Summary:	A High Performance NATS Server written in Go
 
-Group:		Messaging Server Support
 License:	MIT
 URL:		https://github.com/nats-io/gnatsd
 Source0:	https://github.com/nats-io/gnatsd/archive/v1.0.2.tar.gz
@@ -52,24 +51,12 @@ install -D -m 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/
 /bin/getent passwd gnatsd > /dev/null || /sbin/useradd -r -d / -s /sbin/nologin -g gnatsd gnatsd
 
 
-%postun
-case "$1" in
-   0) # remove
-      /sbin/userdel gnatsd
-   ;;
-   1) # upgrade - don't do anything
-   ;;
-esac
-
-
 %files
 %{_sbindir}/gnatsd
 %{_unitdir}/gnatsd.service
-%{_sysconfdir}/gnatsd.conf
+%config(noreplace) %{_sysconfdir}/gnatsd.conf
 
 
-%clean
-rm -rf %{buildroot}
 
 %changelog
 
