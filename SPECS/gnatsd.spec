@@ -45,6 +45,9 @@ install -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/
 install -d %{buildroot}%{_sysconfdir}
 install -D -m 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/
 
+install -d %{buildroot}%{_docdir}
+install -D -m 0644 README.md %{buildroot}%{_docdir}/README.md
+
 
 %pre
 /bin/getent group gnatsd > /dev/null || /sbin/groupadd -r gnatsd
@@ -55,7 +58,7 @@ install -D -m 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/
 %{_sbindir}/gnatsd
 %{_unitdir}/gnatsd.service
 %config(noreplace) %{_sysconfdir}/gnatsd.conf
-
+%doc %{_docdir}/README.md
 
 
 %changelog
