@@ -11,6 +11,7 @@ URL:		https://github.com/nats-io/gnatsd
 Source0:	https://github.com/nats-io/gnatsd/archive/v1.0.2.tar.gz
 Source1:	gnatsd.service
 Source2:    gnatsd.conf
+Source3:	gnatsd.8
 
 
 BuildRequires:	golang
@@ -48,6 +49,9 @@ install -D -m 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/
 install -d %{buildroot}%{_docdir}
 install -D -m 0644 README.md %{buildroot}%{_docdir}/README.md
 
+install -d %{buildroot}%{_mandir}/man8
+install -D -m 0644 %{SOURCE3} %{buildroot}%{_mandir}/man8/gnatsd.8
+
 
 %pre
 /bin/getent group gnatsd > /dev/null || /sbin/groupadd -r gnatsd
@@ -57,6 +61,7 @@ install -D -m 0644 README.md %{buildroot}%{_docdir}/README.md
 %files
 %{_sbindir}/gnatsd
 %{_unitdir}/gnatsd.service
+%{_mandir}/man8/gnatsd.8*
 %config(noreplace) %{_sysconfdir}/gnatsd.conf
 %doc %{_docdir}/README.md
 
