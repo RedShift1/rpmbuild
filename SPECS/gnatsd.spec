@@ -31,7 +31,7 @@ mkdir -p ./_build/src/github.com/nats-io
 ln -s $(pwd) ./_build/src/github.com/nats-io/gnatsd
 
 export GOPATH=$(pwd)/_build:%{gopath}
-go build -o gnatsd .
+go build -ldflags="-s -w" -o gnatsd .
 
 
 %install
