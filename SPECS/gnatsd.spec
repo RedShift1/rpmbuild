@@ -47,7 +47,7 @@ install -d %{buildroot}%{_sysconfdir}
 install -D -m 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/
 
 install -d %{buildroot}%{_docdir}
-install -D -m 0644 README.md %{buildroot}%{_docdir}/README.md
+install -D -m 0644 README.md %{buildroot}%{_docdir}/gnatsd/README.md
 
 install -d %{buildroot}%{_mandir}/man8
 install -D -m 0644 %{SOURCE3} %{buildroot}%{_mandir}/man8/gnatsd.8
@@ -63,7 +63,7 @@ install -D -m 0644 %{SOURCE3} %{buildroot}%{_mandir}/man8/gnatsd.8
 %{_unitdir}/gnatsd.service
 %{_mandir}/man8/gnatsd.8*
 %config(noreplace) %{_sysconfdir}/gnatsd.conf
-%doc %{_docdir}/README.md
+%doc %{_docdir}/gnatsd/README.md
 
 
 %changelog
