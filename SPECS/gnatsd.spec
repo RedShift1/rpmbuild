@@ -57,6 +57,11 @@ install -D -m 0644 %{SOURCE3} %{buildroot}%{_mandir}/man8/gnatsd.8
 /bin/getent group gnatsd > /dev/null || /sbin/groupadd -r gnatsd
 /bin/getent passwd gnatsd > /dev/null || /sbin/useradd -r -d / -s /sbin/nologin -g gnatsd gnatsd
 
+%preun
+if [[ $1 -eq 0 ]]
+then
+    service gnatsd stop
+fi
 
 %files
 %{_sbindir}/gnatsd
