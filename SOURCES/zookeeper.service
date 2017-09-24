@@ -1,0 +1,12 @@
+[Unit]
+Description=Zookeeper
+After=network.target
+
+[Service]
+User=zookeeper
+EnvironmentFile=/etc/sysconfig/zookeeper
+Environment=CLASSPATH=@CLASSPATH@
+ExecStart=/bin/java -cp $CLASSPATH $LOG4J $JVMFLAGS $ZOOMAIN $ZOOCFG
+
+[Install]
+WantedBy=multi-user.target
