@@ -110,6 +110,9 @@ fi
 %{_libdir}/nagios/plugins/check_zookeeper
 
 %changelog
+* Sun Sept 24 2017 Glenn Matthys <glenn@webmind.be> - 3.4.10-1
+- Bump to version 3.4.10
+
 * Tue Nov 22 2016 Michał Lisowski <michal@exads.com> - 3.4.9-3
 - Add nagios-plugins-zookeeper subpackage
 
