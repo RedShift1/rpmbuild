@@ -14,7 +14,7 @@ Release: %{zk_release}%{?dist}
 License: ASL 2.0 and BSD
 Group: Applications/Databases
 URL: https://zookeeper.apache.org/
-Source0: https://www.apache.org/dyn/closer.cgi/zookeeper/zookeeper-%{version}/zookeeper-%{version}.tar.gz
+Source0: http://apache.belnet.be/zookeeper/zookeeper-%{version}/zookeeper-%{version}.tar.gz
 Source1: zookeeper.service
 Source2: zkcli
 Source3: zookeeper.logrotate
@@ -110,7 +110,7 @@ fi
 %{_libdir}/nagios/plugins/check_zookeeper
 
 %changelog
-* Sun Sept 24 2017 Glenn Matthys <glenn@webmind.be> - 3.4.10-1
+* Sun Sep 24 2017 Glenn Matthys <glenn@webmind.be> - 3.4.10-1
 - Bump to version 3.4.10
 
 * Tue Nov 22 2016 Michał Lisowski <michal@exads.com> - 3.4.9-3
