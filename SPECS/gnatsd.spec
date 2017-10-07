@@ -2,14 +2,13 @@
 
 
 Name:		gnatsd
-Version:	1.0.2
+Version:	1.0.4
 Release:	1%{?dist}
 Summary:	A High Performance NATS Server written in Go
 
 License:	MIT
 URL:		https://github.com/nats-io/gnatsd
-Source0:	https://github.com/nats-io/gnatsd/archive/v1.0.2.tar.gz
-Source1:	gnatsd.service
+Source0:	https://github.com/nats-io/gnatsd/archive/v%{version}.tar.gz
 Source2:    gnatsd.conf
 Source3:	gnatsd.8
 
@@ -41,7 +40,7 @@ install -d %{buildroot}%{_sbindir}
 install -p -m 0755 ./gnatsd %{buildroot}%{_sbindir}/gnatsd
 
 install -d %{buildroot}%{_unitdir}
-install -D -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/
+install -D -m 0644 util/gnatsd.service %{buildroot}%{_unitdir}/
 
 install -d %{buildroot}%{_sysconfdir}
 install -D -m 0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/
