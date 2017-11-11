@@ -5,7 +5,7 @@
 %define _log_dir     %{_var}/log/kafka
 %define _data_dir    %{_sharedstatedir}/kafka
 
-%{!?version:%global version 0.11.0.1}
+%{!?version:%global version 1.0.0}
 %{!?build_number:%global build_number 1}
 %{!?scala_version:%global scala_version 2.12}
 
@@ -26,6 +26,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-root
 Vendor: Apache Software Foundation
 Packager: Ivan Dyachkov <ivan.dyachkov@klarna.com>
 Provides: kafka-server
+Requires: java >= 1.8.0
 BuildRequires: systemd
 %systemd_requires
 
@@ -98,6 +99,9 @@ exit 0
 
 
 %changelog
+* Sat Nov 11 2017 Glenn Matthys <glenn@webmind.be> - 1.0.0-1
+- Bump to version 1.0.0-1
+
 * Sun Sep 24 2017 Glenn Matthys <glenn@webmind.be> - 0.11.0.1-1
 - Removed plugins (should go in a seperate package)
 - Changed prefix to /usr/libexec (packages mustn't touch /opt)
