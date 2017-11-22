@@ -6,7 +6,7 @@
 %define _data_dir    %{_sharedstatedir}/kafka
 
 %{!?version:%global version 1.0.0}
-%{!?build_number:%global build_number 1}
+%{!?build_number:%global build_number 2}
 %{!?scala_version:%global scala_version 2.12}
 
 Summary: Publish-subscribe messaging rethought as a distributed commit log
@@ -26,7 +26,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-root
 Vendor: Apache Software Foundation
 Packager: Ivan Dyachkov <ivan.dyachkov@klarna.com>
 Provides: kafka-server
-Requires: java >= 1.8.0
+Requires: java-headless >= 1.8.0
 BuildRequires: systemd
 %systemd_requires
 
