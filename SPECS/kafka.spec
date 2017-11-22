@@ -59,10 +59,11 @@ install -p -D -m 644 %{S:2} %{buildroot}%{_sysconfdir}/logrotate.d/kafka
 install -p -D -m 644 %{S:3} %{buildroot}%{_conf_dir}/log4j.properties
 install -p -D -m 644 %{S:4} %{buildroot}%{_sysconfdir}/sysconfig/kafka
 install -p -D -m 644 libs/* %{buildroot}%{_prefix}/kafka/libs
-for b in %{buildroot}%{_prefix}/kafka/bin/{kafka,connect}*.sh
-do
-    ln -sf %{_prefix}/kafka/bin/$(basename ${b}) %{buildroot}/usr/bin/$(basename ${b})
-done
+
+#for b in %{buildroot}%{_prefix}/kafka/bin/{kafka,connect}*.sh
+#do
+#    ln -sf %{_prefix}/kafka/bin/$(basename ${b}) %{buildroot}/usr/bin/$(basename ${b})
+#done
 
 
 %clean
@@ -90,7 +91,7 @@ exit 0
 %config(noreplace) %{_sysconfdir}/sysconfig/kafka
 %config(noreplace) %{_conf_dir}/*
 %{_prefix}/kafka
-/usr/bin/*.sh
+# /usr/bin/*.sh
 %attr(0755,kafka,kafka) %dir %{_log_dir}
 %attr(0700,kafka,kafka) %dir %{_data_dir}
 %doc NOTICE
